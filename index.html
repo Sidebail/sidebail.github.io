@@ -6,7 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
     <link rel="manifest" href="manifest.json">
-    <script>screen.lockOrientation('portrait');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        window.onload = function(){
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const name = urlParams.get('name')
+            const phone = urlParams.get('phone')
+            const email = urlParams.get('email')
+            document.getElementById('name').innerHTML = name;
+            document.getElementById('phone').innerHTML = phone;
+            document.getElementById('phone').href = `tel:${phone}`;
+            document.getElementById('email').innerHTML = email;
+            document.getElementById('email').href = `mailto:${email}`;
+        };
+    </script>
     <style>
         body {margin: 0;
               display: flex;
@@ -14,7 +30,7 @@
               flex-direction: column;
               background-color: black;
         }
-        #upper {background-color: black; width: 100%; min-height: 35vh}
+        #upper {background-color: black; width: 100%; min-height: 25vh}
         .frame {
             height: 25px;      /* Equals maximum image height */
             width: 160px;
@@ -32,6 +48,12 @@
             max-height: 95%;
             vertical-align: middle;
             margin: 5px;
+        }
+        #name {
+            font-family: 'Lexend', sans-serif !important;
+            font-size: 40px;
+            display: block;
+            text-align:center;
         }
         #phone {
             font-family: 'Lexend', sans-serif !important;
@@ -54,11 +76,11 @@
         }
         #email {
             font-family: 'Lexend', sans-serif !important;
-            width: 60%;
-            max-width: 100%; 
+            min-width: 60%;
+            max-width: 70%; 
             padding: 18px;
             display: block;
-            font-size: 20px;
+            font-size: 15px;
             color: #fff;
             background-color: #e07a00;
             margin-bottom: 10px;
@@ -80,7 +102,6 @@
             background-color: black;
         }
         #googleMap{
-            position: absolute;
             bottom: 0;
             width: 100%;
             height: 30vh;
@@ -94,6 +115,7 @@
         <span class="helper"></span><img id="logo" src="https://www.karmannfinecars.com/wp-content/uploads/2021/12/web-logo.png" alt="LOGO">
     </div>
     <div id="bot">
+        <h1 id="name">Name Surname</h1>
         <a id="phone" href="tel:1-408-555-5555"> 1-408-555-5555</a>
         <a id="email" href = "mailto: abc@example.com">abc@example.com</a> 
     </div>
